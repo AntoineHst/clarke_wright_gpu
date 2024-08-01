@@ -12,6 +12,7 @@ services:
       /bin/bash -c "
       apt-get update &&
       apt-get install -y build-essential cmake &&
+      apt-get install -y cuda-toolkit-11-3 &&  # Assure que les outils CUDA sont installés
       cmake . &&
       make &&
       ./main"
