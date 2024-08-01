@@ -1,3 +1,0 @@
-/app/CMakeFiles/rebuild_cache.dir
-/app/CMakeFiles/edit_cache.dir
-/app/CMakeFiles/main.dir
