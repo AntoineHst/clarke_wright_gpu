@@ -2,21 +2,31 @@
 #include <vector>
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
+#include <cstdlib> // Pour std::rand()
+#include <ctime>   // Pour std::time()
 #include "clarke_wright.h"
 
 using namespace std;
 
 int main() {
-    // Crée un vecteur h_locations et ajoute les éléments un par un
+    // Initialiser le générateur de nombres aléatoires
+    std::srand(std::time(0));
+
+    // Crée un vecteur h_locations
     thrust::host_vector<float> h_locations;
+
+    // Ajouter le dépôt
     h_locations.push_back(0.0); // Dépôt
     h_locations.push_back(0.0);
-    h_locations.push_back(1.0); // Client 1
-    h_locations.push_back(3.0);
-    h_locations.push_back(4.0); // Client 2
-    h_locations.push_back(4.0);
-    h_locations.push_back(5.0); // Client 3
-    h_locations.push_back(1.0);
+
+    // Ajouter 700 clients avec des coordonnées aléatoires
+    const int num_clients = 700;
+    for (int i = 0; i < num_clients; ++i) {
+        float x = static_cast<float>(std::rand() % 100); // Coordonnée x aléatoire
+        float y = static_cast<float>(std::rand() % 100); // Coordonnée y aléatoire
+        h_locations.push_back(x); // Client x
+        h_locations.push_back(y); // Client y
+    }
 
     // Copie les données du vecteur h_locations vers d_locations
     thrust::device_vector<float> d_locations = h_locations;
