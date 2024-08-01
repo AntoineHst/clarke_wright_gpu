@@ -14,8 +14,6 @@ services:
       /bin/bash -c "
       apt-get update &&
       apt-get install -y build-essential cmake cuda-toolkit-11-3 &&
-      # Vérifie la présence de Thrust pour s'assurer qu'il est installé
-      if [ -f /usr/local/cuda/include/thrust/device_vector.h ]; then echo 'Thrust is installed'; else echo 'Thrust is missing'; exit 1; fi &&
       cmake . &&
       make &&
       ./main"
