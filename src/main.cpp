@@ -32,12 +32,12 @@ int main() {
     thrust::device_vector<float> d_locations = h_locations;
 
     // Appel à la fonction clarke_wright avec le vecteur d_locations
-    vector<vector<int>> routes = clarke_wright(d_locations);
+    vector<vector<int64_t>> routes = clarke_wright(d_locations);
 
     // Affichage des résultats
     for (const auto& route : routes) {
         cout << "Route: [0] -> ";
-        for (int loc : route) {
+        for (int64_t loc : route) {
             cout << "[" << loc << "] -> ";
         }
         cout << "[0]" << endl;
